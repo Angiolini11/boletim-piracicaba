@@ -3,7 +3,7 @@
    Quando o quiz estiver pronto, altere MOSTRAR_AVISO_DESENVOLVIMENTO.
    =============================================================== */
 const GOOGLE_FORMS_URL = "https://forms.gle/WP6491GKvjS733Hz5";
-const MOSTRAR_AVISO_DESENVOLVIMENTO = true;
+const MOSTRAR_AVISO_DESENVOLVIMENTO = false;
 
 /* Dados fornecidos para o boletim: não alterar sem validar a fonte. */
 const DADOS_POR_ANO = {
