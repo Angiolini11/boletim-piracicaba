@@ -1,0 +1,14 @@
+BOLETIM INTERATIVO — BACIA DO RIO PIRACICABA-MG
+
+1. Para visualizar no computador, abra index.html no navegador.
+2. Para adicionar imagens, coloque os arquivos na pasta images/ com os nomes indicados em images/LEIA-ME.txt.
+3. Para configurar o quiz, abra script.js e substitua COLE_AQUI_O_LINK_DO_GOOGLE_FORMS pelo endereço completo do Google Forms.
+4. Quando o formulário estiver pronto, altere MOSTRAR_AVISO_DESENVOLVIMENTO de true para false no início do script.js.
+5. Para permitir acesso pelo celular por meio de um link, publique toda a pasta do site em uma hospedagem estática como GitHub Pages, Netlify ou Cloudflare Pages. Não é necessário backend.
+6. Para testar em um celular sem publicar, transfira a pasta completa e abra index.html em um navegador que permita arquivos locais. A publicação é a opção mais confiável para compartilhar com outras pessoas.
+
+Arquivos principais:
+  index.html
+  style.css
+  script.js
+  images/

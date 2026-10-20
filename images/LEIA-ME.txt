@@ -1,0 +1,10 @@
+Coloque as imagens nesta pasta com os seguintes nomes exatos:
+
+capa.jpg        — foto para o cabeçalho (opcional)
+mapa-bacia.png  — mapa geral da bacia
+mapa-1995.png   — superfície de água em 1995
+mapa-2005.png   — superfície de água em 2005
+mapa-2015.png   — superfície de água em 2015
+mapa-2025.png   — superfície de água em 2025
+
+Imagens ausentes não quebram o site. Até serem inseridas, um placeholder será exibido.
