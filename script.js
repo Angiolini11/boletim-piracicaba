@@ -2,7 +2,7 @@
    CONFIGURAÇÃO: cole aqui o link publicado do Google Forms.
    Quando o quiz estiver pronto, altere MOSTRAR_AVISO_DESENVOLVIMENTO.
    =============================================================== */
-const GOOGLE_FORMS_URL = "COLE_AQUI_O_LINK_DO_GOOGLE_FORMS";
+const GOOGLE_FORMS_URL = "https://forms.gle/WP6491GKvjS733Hz5";
 const MOSTRAR_AVISO_DESENVOLVIMENTO = true;
 
 /* Dados fornecidos para o boletim: não alterar sem validar a fonte. */
