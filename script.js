@@ -2,7 +2,7 @@
    CONFIGURAÇÃO: cole aqui o link publicado do Google Forms.
    Quando o quiz estiver pronto, altere MOSTRAR_AVISO_DESENVOLVIMENTO.
    =============================================================== */
-const GOOGLE_FORMS_URL = "https://forms.gle/2FMtGxf2ZFBtqTN58";
+const GOOGLE_FORMS_URL = "COLE_AQUI_O_LINK_DO_GOOGLE_FORMS";
 const MOSTRAR_AVISO_DESENVOLVIMENTO = true;
 
 /* Dados fornecidos para o boletim: não alterar sem validar a fonte. */
@@ -25,12 +25,9 @@ const DADOS_POR_ANO = {
   }
 };
 
-/* Se a imagem não existir, mantém o placeholder, sem ícone quebrado. */
-function carregarImagem(container, caminho, descricao, rotulo) {
-  if (!container) return;
-  container.dataset.image = caminho;
-  container.dataset.alt = descricao;
-  container.replaceChildren();
+/* Mantém o mapa anterior visível enquanto o próximo carrega.
+   Só exibe o aviso se realmente ocorrer erro ao carregar. */
+function criarAvisoImagem(rotulo) {
   const placeholder = document.createElement("div");
   placeholder.className = "missing-image";
   const icone = document.createElement("span");
@@ -41,16 +38,40 @@ function carregarImagem(container, caminho, descricao, rotulo) {
   const detalhe = document.createElement("small");
   detalhe.textContent = rotulo;
   placeholder.append(icone, titulo, detalhe);
-  container.append(placeholder);
+  return placeholder;
+}
+
+function carregarImagem(container, caminho, descricao, rotulo) {
+  if (!container) return;
+  container.dataset.image = caminho;
+  container.dataset.alt = descricao;
+
+  // Em uma troca de ano, NÃO removemos o mapa atual antes de carregar o próximo.
   const imagem = new Image();
   imagem.alt = descricao;
   imagem.decoding = "async";
-  imagem.onload = () => {
-    if (container.dataset.image === caminho) container.replaceChildren(imagem);
+  imagem.onload = async () => {
+    // Aguarda a decodificação para evitar tela branca ou cintilação na troca.
+    if (typeof imagem.decode === "function") {
+      try { await imagem.decode(); } catch (_) { /* onload já confirmou a imagem */ }
+    }
+    // Se o usuário clicou em outro ano durante o carregamento, ignora o anterior.
+    if (container.dataset.image !== caminho) return;
+    container.replaceChildren(imagem);
   };
-  imagem.onerror = () => { /* O placeholder permanece visível. */ };
+  imagem.onerror = () => {
+    if (container.dataset.image !== caminho) return;
+    container.replaceChildren(criarAvisoImagem(rotulo));
+  };
   imagem.src = caminho;
 }
+
+// Antecipamos o carregamento dos quatro mapas para deixar a troca ainda mais rápida.
+const mapasPrecarregados = Object.values(DADOS_POR_ANO).map(dado => {
+  const imagem = new Image();
+  imagem.src = dado.imagem;
+  return imagem;
+});
 
 const botoesAno = Array.from(document.querySelectorAll(".year-button"));
 function selecionarAno(ano) {
